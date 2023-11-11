@@ -41,10 +41,10 @@ function App() {
         {widgets.map((widget) => {
           return (
             <div key={widget.id}>
-              <h2>{widget.name}</h2>
-              <h3>{widget.price}</h3>
-              <h3>{widget.mfg}</h3>
-              <h3>{widget.inStock}</h3>
+              <h2>Name: {widget.name}</h2>
+              <h3>Price: {widget.price}</h3>
+              <h3>Manufacturer: {widget.mfg}</h3>
+              <h3>Number in stock: {widget.inStock}</h3>
               <button onClick={() => handleDeleteWidget(widget.id)}>
                 Delete widget
               </button>
