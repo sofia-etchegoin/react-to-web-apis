@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Widget } from '../../models/Widget'
 import { getWidgetsApi } from '../apiClient'
+import { AddWidget } from './AddWidget'
 
 function App() {
   const [widgets, setWidgets] = useState([] as Widget[])
+  const [showAddWidgetForm, setShowAddWidgetForm] = useState(false)
+
   console.log('These are the widgets', widgets)
   useEffect(() => {
     async function getWidgetsDB() {
@@ -14,9 +17,15 @@ function App() {
   }, [])
   console.log('Widgets are rendering')
 
+  const toggleAddWidgetForm = () => {
+    setShowAddWidgetForm(!showAddWidgetForm)
+  }
+
   return (
     <>
       <h1>Widgets for the win!</h1>
+      <button onClick={toggleAddWidgetForm}>Add Widget</button>
+      {showAddWidgetForm && <AddWidget />}
       <div>
         {widgets.map((widget) => {
           return (

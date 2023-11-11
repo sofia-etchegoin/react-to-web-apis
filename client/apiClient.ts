@@ -9,7 +9,7 @@ export async function getWidgetsApi(): Promise<Widget[]> {
   return response.body
 }
 
-export async function addWidgetApi(widget: Promise<Widget>) {
+export async function addWidgetApi(widget: Widget) {
   const response = await request.post(widgetUrl).send(widget)
   return response.body
 }

@@ -37,7 +37,7 @@ export function AddWidget() {
 
   return (
     <>
-      <form onSubmit={addWidgetApi} method="POST">
+      <form onSubmit={handleSubmit} method="POST">
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -69,7 +69,7 @@ export function AddWidget() {
           value={formData.inStock}
           onChange={handleInputChange}
         />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </>
   )
