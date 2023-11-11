@@ -13,3 +13,8 @@ export async function addWidgetApi(widget: Widget) {
   const response = await request.post(widgetUrl).send(widget)
   return response.body
 }
+
+export async function deleteWidgetApi(widgetId: number) {
+  const response = await request.delete(`${widgetUrl}/${widgetId}`)
+  return response.body
+}

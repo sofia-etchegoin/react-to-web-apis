@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Widget } from '../../models/Widget'
 import { getWidgetsApi } from '../apiClient'
 import { AddWidget } from './AddWidget'
+import { deleteWidgetApi } from '../apiClient'
 
 function App() {
   const [widgets, setWidgets] = useState([] as Widget[])
@@ -21,6 +22,16 @@ function App() {
     setShowAddWidgetForm(!showAddWidgetForm)
   }
 
+  const handleDeleteWidget = async (widgetId) => {
+    try {
+      await deleteWidgetApi(widgetId)
+      const updatedWidgets = widgets.filter((widget) => widget.id !== widgetId)
+      setWidgets(updatedWidgets)
+    } catch (error: any) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <>
       <h1>Widgets for the win!</h1>
@@ -34,6 +45,9 @@ function App() {
               <h3>{widget.price}</h3>
               <h3>{widget.mfg}</h3>
               <h3>{widget.inStock}</h3>
+              <button onClick={() => handleDeleteWidget(widget.id)}>
+                Delete widget
+              </button>
             </div>
           )
         })}

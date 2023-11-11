@@ -11,3 +11,7 @@ export function getWidgetsFromDb(db = connection): Promise<Widget[]> {
 export function addWidgetToDB(widget: any) {
   return connection('widgets').insert(widget)
 }
+
+export function deleteWidgetFromDb(widgetId: number) {
+  return connection('widgets').where({ id: widgetId }).delete()
+}
