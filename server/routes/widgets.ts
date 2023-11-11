@@ -41,4 +41,17 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+router.patch('/:id', async (req, res) => {
+  const widgetId = parseInt(req.params.id, 10)
+
+  try {
+    const updatedWidget = req.body
+    await updateWidgetInDb(widgetId, updatedWidget)
+    res.status(200).json({ message: 'Widget updated successfully' })
+  } catch (error: any) {
+    console.log(error.message)
+    res.status(500).send('Whoops, there was an error')
+  }
+})
+
 export default router

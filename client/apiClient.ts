@@ -21,7 +21,9 @@ export async function deleteWidgetApi(widgetId: number) {
   return response.body
 }
 
-// export async function updateWidgetApi(widgetId: number, widget: Widget) {
-//   const response = await request.patch(`${widgetUrl}/${widgetId}`).send(widget)
-//   return response.body
-// }
+export async function updateWidgetApi(widgetId: number, updatedWidget: Widget) {
+  const response = await request
+    .patch(`/api/v1/widgets/${widgetId}`)
+    .send(updatedWidget)
+  return response.body
+}
