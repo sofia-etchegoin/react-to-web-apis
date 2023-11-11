@@ -4,7 +4,9 @@ import {
   addWidgetToDB,
   deleteWidgetFromDb,
   getWidgetsFromDb,
+  updateWidgetInDb,
 } from '../db/db.ts'
+import { updateWidgetApi } from '../../client/apiClient.ts'
 
 const router = express.Router()
 
@@ -33,17 +35,6 @@ router.delete('/:id', async (req, res) => {
   try {
     await deleteWidgetFromDb(widgetId)
     res.status(204).send()
-  } catch (error: any) {
-    console.log(error.message)
-    res.status(500).send('Whoops, there was an error')
-  }
-})
-
-//route for updating widget on another page
-router.patch('/:id', async (req, res) => {
-  const widgetId = parseInt(req.params.id, 10)
-
-  try {
   } catch (error: any) {
     console.log(error.message)
     res.status(500).send('Whoops, there was an error')

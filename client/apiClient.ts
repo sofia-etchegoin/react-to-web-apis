@@ -7,6 +7,7 @@ const widgetUrl = '/api/v1/widgets/'
 
 export async function getWidgetsApi(): Promise<Widget[]> {
   const response = await request.get(widgetUrl)
+  console.log(response)
   return response.body
 }
 
@@ -20,4 +21,7 @@ export async function deleteWidgetApi(widgetId: number) {
   return response.body
 }
 
-export async function updateWidgetApi() {}
+// export async function updateWidgetApi(widgetId: number, widget: Widget) {
+//   const response = await request.patch(`${widgetUrl}/${widgetId}`).send(widget)
+//   return response.body
+// }

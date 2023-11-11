@@ -6,17 +6,15 @@ import { Link } from 'react-router-dom'
 import { Widget } from '../../models/Widget'
 
 import { AddWidget } from './AddWidget'
-import { UpdateWidget } from './UpdateWidget'
 
 //API imports
-import { getWidgetsApi } from '../apiClient'
-import { deleteWidgetApi } from '../apiClient'
+import { getWidgetsApi, deleteWidgetApi } from '../apiClient'
 
 function App() {
   const [widgets, setWidgets] = useState([] as Widget[])
   const [showAddWidgetForm, setShowAddWidgetForm] = useState(false)
+  const [updateWidgetId, setUpdateWidgetId] = useState(null)
 
-  console.log('These are the widgets', widgets)
   useEffect(() => {
     async function getWidgetsDB() {
       const result = await getWidgetsApi()
@@ -24,7 +22,6 @@ function App() {
     }
     getWidgetsDB()
   }, [])
-  console.log('Widgets are rendering')
 
   const toggleAddWidgetForm = () => {
     setShowAddWidgetForm(!showAddWidgetForm)
@@ -40,12 +37,24 @@ function App() {
     }
   }
 
+  const handleUpdateWidget = (widgetId) => {
+    setUpdateWidgetId(widgetId)
+  }
+
+  const handleUpdateFormSubmit = async (updatedWidget) => {
+    try {
+      await updateWidgetApi(updateWidgetId, updatedWidget)
+      setUpdateWidgetId(null)
+      const updatedWidgets = await getWidgetsApi()
+      setWidgets(updatedWidgets)
+    } catch (error: any) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <>
       <h1>Widgets for the win!</h1>
-      <div>
-        <Link to="/update">Update a Widget</Link>
-      </div>
       <br />
       <button onClick={toggleAddWidgetForm}>Add Widget</button>
       {showAddWidgetForm && <AddWidget />}
