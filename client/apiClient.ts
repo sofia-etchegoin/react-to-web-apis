@@ -1,3 +1,4 @@
+//apiClient.ts
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'superagent'
 import { Widget } from '../models/Widget'
@@ -18,3 +19,5 @@ export async function deleteWidgetApi(widgetId: number) {
   const response = await request.delete(`${widgetUrl}/${widgetId}`)
   return response.body
 }
+
+export async function updateWidgetApi() {}

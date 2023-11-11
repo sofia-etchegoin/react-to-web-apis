@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   try {
     const widgets = await getWidgetsFromDb()
     res.json(widgets)
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message)
   }
 })
@@ -33,6 +33,17 @@ router.delete('/:id', async (req, res) => {
   try {
     await deleteWidgetFromDb(widgetId)
     res.status(204).send()
+  } catch (error: any) {
+    console.log(error.message)
+    res.status(500).send('Whoops, there was an error')
+  }
+})
+
+//route for updating widget on another page
+router.patch('/:id', async (req, res) => {
+  const widgetId = parseInt(req.params.id, 10)
+
+  try {
   } catch (error: any) {
     console.log(error.message)
     res.status(500).send('Whoops, there was an error')

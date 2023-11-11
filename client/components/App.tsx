@@ -1,7 +1,15 @@
+//App.tsx component
+
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Widget } from '../../models/Widget'
-import { getWidgetsApi } from '../apiClient'
+
 import { AddWidget } from './AddWidget'
+import { UpdateWidget } from './UpdateWidget'
+
+//API imports
+import { getWidgetsApi } from '../apiClient'
 import { deleteWidgetApi } from '../apiClient'
 
 function App() {
@@ -35,6 +43,10 @@ function App() {
   return (
     <>
       <h1>Widgets for the win!</h1>
+      <div>
+        <Link to="/update">Update a Widget</Link>
+      </div>
+      <br />
       <button onClick={toggleAddWidgetForm}>Add Widget</button>
       {showAddWidgetForm && <AddWidget />}
       <div>
