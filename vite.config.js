@@ -1,3 +1,5 @@
+//vite.config.js
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -8,5 +10,8 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:3000',
     },
+  },
+  test: {
+    setupFiles: './client/components/test/setup.ts',
   },
 })
