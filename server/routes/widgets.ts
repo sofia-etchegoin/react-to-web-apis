@@ -1,4 +1,4 @@
-//routes
+//routes/widgets.ts
 import express from 'express'
 import {
   addWidgetToDB,
