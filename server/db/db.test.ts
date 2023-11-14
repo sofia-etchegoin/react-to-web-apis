@@ -26,3 +26,4 @@ describe('getWidgets', () => {
     expect(widgets[1].inStock).toBe(8)
   })
 })
+// Need a test for the addWidgetToDB function, please?

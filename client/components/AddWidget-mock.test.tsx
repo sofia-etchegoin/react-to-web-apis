@@ -15,10 +15,12 @@ vi.mock('../apiClient.ts')
 
 const mockAddedWidgetData = {
   name: 'Fake Widget',
-  price: 20,
+  price: '20',
   mfg: 'Fake Manufacturer',
-  inStock: 10,
-} as Models.NewWidget
+  inStock: '10',
+}
+// You were right, changing these numbers to strings
+// means `toHaveBeenCalledWith` passes
 
 describe('<AddWidget/>', () => {
   it('adds a widget on form submission', async () => {
@@ -48,6 +50,6 @@ describe('<AddWidget/>', () => {
     fireEvent.click(button)
 
     //ASSERT
-    expect(api.addWidgetApi).toHaveBeenCalled(mockAddedWidgetData)
+    expect(api.addWidgetApi).toHaveBeenCalledWith(mockAddedWidgetData)
   })
 })
