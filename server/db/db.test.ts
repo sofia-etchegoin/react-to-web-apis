@@ -3,7 +3,7 @@
 // @vitest-environment node
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 import connection from './connection.ts'
-import { getWidgetsFromDb } from './db.ts'
+import { addWidgetToDB, getWidgetsFromDb } from './db.ts'
 
 beforeAll(async () => {
   await connection.migrate.latest()
@@ -17,13 +17,29 @@ afterAll(async () => {
   await connection.destroy()
 })
 
-describe('getWidgets', () => {
-  it('returns the correct widgets array', async () => {
-    const widgets = await getWidgetsFromDb()
+describe('addWidgets', () => {
+  it('adds a widget to the database', async () => {
+    //ARRANGE
+    const widgetToAdd = {
+      name: 'Added Widget',
+      price: 1000,
+      mfg: 'Widget Manufacturer',
+      inStock: 1,
+    }
 
-    expect(widgets).toHaveLength(3)
-    expect(widgets[0]).toHaveProperty('mfg')
-    expect(widgets[1].inStock).toBe(8)
+    //ACT
+    await addWidgetToDB(widgetToAdd)
+
+    //ASSERT
+    const widgetsInDb = await getWidgetsFromDb()
+    const addedWidget = widgetsInDb.find(
+      (widget) => widget.name === widgetToAdd.name
+    )
+
+    expect(addedWidget?.name).toBe(widgetToAdd.name)
+    expect(addedWidget?.price).toBe(widgetToAdd.price)
+    expect(addedWidget?.mfg).toBe(widgetToAdd.mfg)
+    expect(addedWidget?.inStock).toBe(widgetToAdd.inStock)
   })
 })
 // Need a test for the addWidgetToDB function, please?

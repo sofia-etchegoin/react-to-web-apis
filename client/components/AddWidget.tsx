@@ -22,6 +22,7 @@ export function AddWidget() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('Submitted')
     try {
       await addWidgetApi(formData)
       setFormData({
