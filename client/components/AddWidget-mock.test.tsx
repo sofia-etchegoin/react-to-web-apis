@@ -2,12 +2,7 @@
 
 // @vitest-environment jsdom
 import { describe, it, expect, vi } from 'vitest'
-import {
-  fireEvent,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react/pure'
+import { fireEvent, render, screen } from '@testing-library/react/pure'
 import './test/setup.ts'
 
 import * as api from '../apiClient.ts'
@@ -52,16 +47,7 @@ describe('<AddWidget/>', () => {
     })
     fireEvent.click(button)
 
-    // await waitForElementToBeRemoved(() => screen.getByText('Adding Widget...'))
-
     //ASSERT
     expect(api.addWidgetApi).toHaveBeenCalled(mockAddedWidgetData)
-
-    // expect(screen.getByText('Fake Widget')).toBeInTheDocument()
-    // expect(screen.getByText('Price: 20')).toBeInTheDocument()
-    // expect(
-    //   screen.getByText('Manufacturer: Fake Manufacturer')
-    // ).toBeInTheDocument()
-    // expect(screen.getByText('Number in stock: 10')).toBeInTheDocument()
   })
 })
