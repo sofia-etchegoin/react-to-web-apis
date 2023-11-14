@@ -40,6 +40,7 @@ export function AddWidget() {
       <form onSubmit={handleSubmit} method="POST">
         <label htmlFor="name">Name:</label>
         <input
+          id="name"
           type="text"
           name="name"
           value={formData.name}
@@ -48,6 +49,7 @@ export function AddWidget() {
 
         <label htmlFor="price">Price:</label>
         <input
+          id="price"
           type="text"
           name="price"
           value={formData.price}
@@ -56,6 +58,7 @@ export function AddWidget() {
 
         <label htmlFor="mfg">Manufacturer:</label>
         <input
+          id="mfg"
           type="text"
           name="mfg"
           value={formData.mfg}
@@ -64,6 +67,7 @@ export function AddWidget() {
 
         <label htmlFor="inStock">In Stock:</label>
         <input
+          id="inStock"
           type="text"
           name="inStock"
           value={formData.inStock}
