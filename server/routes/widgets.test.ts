@@ -19,4 +19,5 @@ describe('POST /api/v1/widgets', () => {
 
     await request(server).post('/api/v1/widgets').send(sadWidget).expect(200)
   })
+  // Looks good!
 })

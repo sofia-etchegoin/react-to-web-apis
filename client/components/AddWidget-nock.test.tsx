@@ -39,11 +39,17 @@ describe('<AddWidget/>', () => {
       target: { value: mockAddedWidgetData.inStock },
     })
     fireEvent.click(button)
+    // I think here, we need to wait just a moment for the request
+    // to go through. One way is to use the await waitfor...
+    // pattern that you considered, at one point. But maybe the
+    // only thing we can wait for is for the "displayValue" of your
+    // inputs to be reset? Then we can check that the scope isDone.
 
     //ASSERT
     //expect(api.addWidgetApi).toHaveBeenCalled(mockAddedWidgetData)
 
     // a request has been made that matched this pattern
     expect(scope.isDone()).toBe(false)
+    // We want the scope.isDone() to be true.
   })
 })
